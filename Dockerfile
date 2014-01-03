@@ -29,4 +29,5 @@ EXPOSE 22
 EXPOSE 8000
 EXPOSE 8080
 
+VOLUME ["/var/lib/riak"]
 CMD ["/bin/bash", "/start.sh"]
