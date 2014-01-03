@@ -29,3 +29,9 @@ session    required   pam_limits.so
 ```
 ulimit -n 10000
 ```
+
+# Build with
+
+```
+docker build -t jmca/riakcs githum.com/jmcarbo/docker-riakcs
+```
