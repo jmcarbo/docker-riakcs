@@ -28,39 +28,39 @@ RUN sed -i 's/127.0.0.1/0.0.0.0/' /etc/riak-cs/app.config
 RUN sed -i 's/127.0.0.1/0.0.0.0/' /etc/stanchion/app.config
 RUN perl -pi -e 's/{anonymous_user_creation, false}/{anonymous_user_creation, true}/g' /etc/riak-cs/app.config
 
-#RUN riak start
-#RUN stanchion start
-#RUN riak-cs start
-#
-#RUN curl -sS -H 'Content-Type: application/json' -X POST http://localhost:8080/riak-cs/user --data '{"email":"jmcarbo@gmail.com", "name":"admin user"}' > /admin_user.json
-#
-#RUN KEY=`cat /admin_user.json | grep -E -o '"key_id":"[^\"]+"' | sed -e 's/\"//g' | cut -d : -f 2`
-#RUN SECRET=`cat /admin_user.json | grep -E -o '"key_secret":"[^\"]+"' | sed -e 's/\"//g' | cut -d : -f 2`
-#
-#RUN echo "Admin Key: "$KEY
-#RUN echo "Admin Secret: "$SECRET
-#
-#RUN riak-cs stop
-#RUN stanchion stop
-#RUN riak stop
-#
-#RUN sleep 3
-#
-#RUN perl -pi -e 's/###KEY###/'$KEY'/g' /etc/riak/app.config
-#RUN perl -pi -e 's/###SECRET###/'$SECRET'/g' /etc/riak/app.config
-#
-#RUN perl -pi -e 's/###KEY###/'$KEY'/g' /etc/riak-cs/app.config
-#RUN perl -pi -e 's/###SECRET###/'$SECRET'/g' /etc/riak-cs/app.config
-#
-#RUN perl -pi -e 's/###KEY###/'$KEY'/g' /etc/riak-cs-control/app.config
-#RUN perl -pi -e 's/###SECRET###/'$SECRET'/g' /etc/riak-cs-control/app.config
-#
-#RUN perl -pi -e 's/###KEY###/'$KEY'/g' /etc/stanchion/app.config
-#RUN perl -pi -e 's/###SECRET###/'$SECRET'/g' /etc/stanchion/app.config
-#
-#RUN perl -pi -e 's/{anonymous_user_creation, true}/{anonymous_user_creation, false}/g' /etc/riak-cs/app.config
-#
-#ADD start.sh /start.sh
+RUN riak start
+RUN stanchion start
+RUN riak-cs start
+
+RUN curl -sS -H 'Content-Type: application/json' -X POST http://localhost:8080/riak-cs/user --data '{"email":"jmcarbo@gmail.com", "name":"admin user"}' > /admin_user.json
+
+RUN KEY=`cat /admin_user.json | grep -E -o '"key_id":"[^\"]+"' | sed -e 's/\"//g' | cut -d : -f 2`
+RUN SECRET=`cat /admin_user.json | grep -E -o '"key_secret":"[^\"]+"' | sed -e 's/\"//g' | cut -d : -f 2`
+
+RUN echo "Admin Key: "$KEY
+RUN echo "Admin Secret: "$SECRET
+
+RUN riak-cs stop
+RUN stanchion stop
+RUN riak stop
+
+RUN sleep 3
+
+RUN perl -pi -e 's/###KEY###/'$KEY'/g' /etc/riak/app.config
+RUN perl -pi -e 's/###SECRET###/'$SECRET'/g' /etc/riak/app.config
+
+RUN perl -pi -e 's/###KEY###/'$KEY'/g' /etc/riak-cs/app.config
+RUN perl -pi -e 's/###SECRET###/'$SECRET'/g' /etc/riak-cs/app.config
+
+RUN perl -pi -e 's/###KEY###/'$KEY'/g' /etc/riak-cs-control/app.config
+RUN perl -pi -e 's/###SECRET###/'$SECRET'/g' /etc/riak-cs-control/app.config
+
+RUN perl -pi -e 's/###KEY###/'$KEY'/g' /etc/stanchion/app.config
+RUN perl -pi -e 's/###SECRET###/'$SECRET'/g' /etc/stanchion/app.config
+
+RUN perl -pi -e 's/{anonymous_user_creation, true}/{anonymous_user_creation, false}/g' /etc/riak-cs/app.config
+
+ADD start.sh /start.sh
 
 EXPOSE 22
 EXPOSE 8000
