@@ -8,9 +8,9 @@ perl -pi -e 's/{anonymous_user_creation, false}/{anonymous_user_creation, true}/
 riak start 
 stanchion start 
 riak-cs start
-
+sleep 5
 curl -sS -H 'Content-Type: application/json' -X POST http://localhost:8080/riak-cs/user --data '{"email":"jmcarbo@gmail.com", "name":"admin user"}' > /admin_user.json
-
+cat /admin_user.json
 KEY=`cat /admin_user.json | grep -E -o '"key_id":"[^\"]+"' | sed -e 's/\"//g' | cut -d : -f 2`
 SECRET=`cat /admin_user.json | grep -E -o '"key_secret":"[^\"]+"' | sed -e 's/\"//g' | cut -d : -f 2`
 
