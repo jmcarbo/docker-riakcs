@@ -35,3 +35,7 @@ ulimit -n 10000
 ```
 docker build -t jmca/riakcs github.com/jmcarbo/docker-riakcs
 ```
+
+# References
+
+* http://docs.basho.com/riakcs/latest/tutorials/fast-track/Building-a-Local-Test-Environment/
