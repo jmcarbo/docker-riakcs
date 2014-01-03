@@ -30,9 +30,7 @@ RUN perl -pi -e 's/{anonymous_user_creation, false}/{anonymous_user_creation, tr
 
 RUN ulimit -n 5000
 RUN echo `ulimit -n`
-RUN riak start || stanchion start || stanchion console
-RUN sleep 10
-RUN stanchion start
+RUN riak start && stanchion start && stanchion console
 RUN sleep 10
 RUN riak-cs start
 
