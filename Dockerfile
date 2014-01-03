@@ -29,6 +29,7 @@ RUN sed -i 's/127.0.0.1/0.0.0.0/' /etc/stanchion/app.config
 RUN perl -pi -e 's/{anonymous_user_creation, false}/{anonymous_user_creation, true}/g' /etc/riak-cs/app.config
 
 RUN riak start
+RUN sleep 4
 RUN stanchion start
 RUN riak-cs start
 
