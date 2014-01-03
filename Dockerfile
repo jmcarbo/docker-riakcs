@@ -29,8 +29,9 @@ RUN sed -i 's/127.0.0.1/0.0.0.0/' /etc/stanchion/app.config
 RUN perl -pi -e 's/{anonymous_user_creation, false}/{anonymous_user_creation, true}/g' /etc/riak-cs/app.config
 
 RUN riak start
-RUN sleep 4
+RUN sleep 10
 RUN stanchion start
+RUN sleep 10
 RUN riak-cs start
 
 RUN curl -sS -H 'Content-Type: application/json' -X POST http://localhost:8080/riak-cs/user --data '{"email":"jmcarbo@gmail.com", "name":"admin user"}' > /admin_user.json
