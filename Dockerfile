@@ -20,7 +20,7 @@ RUN apt-get update
 RUN LC_ALL=C DEBIAN_FRONTEND=noninteractive apt-get -y install stanchion riak riak-cs riak-cs-control
 
 
-ADD start.sh .
+ADD start.sh /start.sh
 
 EXPOSE 22
 EXPOSE 8000
