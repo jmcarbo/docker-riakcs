@@ -10,10 +10,9 @@ if [ ! -d "/var/lib/riak/leveldb" ]; then
 	sleep 4
 	riak-cs start
 	sleep 5
-	curl -sS -H 'Content-Type: application/json' -X POST http://localhost:8080/riak-cs/user --data '{"email":"jmcarbo@gmail.com", "name":"admin user"}' > /admin_user.json
-	cat /admin_user.json
-	KEY=`cat /admin_user.json | grep -E -o '"key_id":"[^\"]+"' | sed -e 's/\"//g' | cut -d : -f 2`
-	SECRET=`cat /admin_user.json | grep -E -o '"key_secret":"[^\"]+"' | sed -e 's/\"//g' | cut -d : -f 2`
+	curl -sS -H 'Content-Type: application/json' -X POST http://localhost:8080/riak-cs/user --data '{"email":"jmcarbo@gmail.com", "name":"admin user"}' > /var/lib/riak/admin_user.json
+	KEY=`cat /var/lib/riak/admin_user.json | grep -E -o '"key_id":"[^\"]+"' | sed -e 's/\"//g' | cut -d : -f 2`
+	SECRET=`cat /var/lib/riak/admin_user.json | grep -E -o '"key_secret":"[^\"]+"' | sed -e 's/\"//g' | cut -d : -f 2`
 
 	riak-cs stop
 	stanchion stop
@@ -42,8 +41,8 @@ stanchion start
 riak-cs start
 riak-cs-control start
 
-KEY=`cat /admin_user.json | grep -E -o '"key_id":"[^\"]+"' | sed -e 's/\"//g' | cut -d : -f 2`
-SECRET=`cat /admin_user.json | grep -E -o '"key_secret":"[^\"]+"' | sed -e 's/\"//g' | cut -d : -f 2`
+KEY=`cat /var/lib/riak/admin_user.json | grep -E -o '"key_id":"[^\"]+"' | sed -e 's/\"//g' | cut -d : -f 2`
+SECRET=`cat /var/lib/riak/admin_user.json | grep -E -o '"key_secret":"[^\"]+"' | sed -e 's/\"//g' | cut -d : -f 2`
 
 # start SSH
 /usr/sbin/sshd
