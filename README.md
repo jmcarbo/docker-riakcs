@@ -33,5 +33,5 @@ ulimit -n 10000
 # Build with
 
 ```
-docker build -t jmca/riakcs githum.com/jmcarbo/docker-riakcs
+docker build -t jmca/riakcs github.com/jmcarbo/docker-riakcs
 ```
