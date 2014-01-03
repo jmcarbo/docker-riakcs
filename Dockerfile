@@ -28,6 +28,8 @@ RUN sed -i 's/127.0.0.1/0.0.0.0/' /etc/riak-cs/app.config
 RUN sed -i 's/127.0.0.1/0.0.0.0/' /etc/stanchion/app.config
 RUN perl -pi -e 's/{anonymous_user_creation, false}/{anonymous_user_creation, true}/g' /etc/riak-cs/app.config
 
+ulimit -n 5000
+
 RUN riak start
 RUN sleep 10
 RUN stanchion start
