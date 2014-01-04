@@ -24,6 +24,7 @@ ADD backend.sed /backend.sed
 ADD conditioning.sh /conditioning.sh
 RUN sh /conditioning.sh
 ADD start.sh /start.sh
+ADD initialize.sh /initialize.sh
 
 EXPOSE 22
 EXPOSE 8000
