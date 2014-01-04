@@ -5,9 +5,7 @@ perl -pi -e 's/{anonymous_user_creation, false}/{anonymous_user_creation, true}/
 mkdir -p /var/lib/riak/ring
 chown -R riak:riak /var/lib/riak        
 riak start 
-sleep 2
 stanchion start 
-sleep 2
 riak-cs start
 sleep 2
 curl -sS -H 'Content-Type: application/json' -X POST http://localhost:8080/riak-cs/user --data '{"email":"jmcarbo@gmail.com", "name":"admin user"}' > /var/lib/riak/admin_user.json
