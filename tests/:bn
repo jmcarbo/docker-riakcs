@@ -1,0 +1,8 @@
+require 'fog'
+
+client = Fog::RiakCS::Provisioning.new(
+  :riakcs_access_key_id     => "Z0AYOHZWE1RTBCGTTWG0",
+  :riakcs_secret_access_key => RIAK_CS_ADMIN_SECRET,
+  :host                     => 'localhost',
+  :port                     => 8080
+)

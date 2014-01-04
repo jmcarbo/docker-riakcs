@@ -2,9 +2,9 @@ require 'aws/s3'
 AWS::S3::Base.establish_connection!(
         :server            => 'localhost',
 #        :use_ssl           => false, 
-	:port		=> 49189,
-        :access_key_id     => 'J7Y0MPUV2VHYETNHCY2D',
-        :secret_access_key => 'fxTg2frUgcFNv0Dlt4OssRMtKnFFKos_tuoOyQ=='
+	:port		=> 8080,
+        :access_key_id     => 'Z0AYOHZWE1RTBCGTTWG0',
+        :secret_access_key => 'h2GTENumkwSvhw29zKamdnTzPdkWyRQkzmL3hA=='
 )
 #Admin Key: BFNTPUDXWS39AF1RXM50
 #Admin Secret: HknoexUOKlQLJrJ924RY-pK_LwCKKG5ZQPJj-Q==
