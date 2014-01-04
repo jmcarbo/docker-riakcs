@@ -20,17 +20,17 @@ if [ ! -d "/var/lib/riak/leveldb" ]; then
 
 	sleep 3
 
-	perl -pi -e 's/###KEY###/'$KEY'/g' /etc/riak/app.config
-	perl -pi -e 's/###SECRET###/'$SECRET'/g' /etc/riak/app.config
+#       perl -pi -e 's/###KEY###/'$KEY'/g' /etc/riak/app.config
+#       perl -pi -e 's/###SECRET###/'$SECRET'/g' /etc/riak/app.config
 
-	perl -pi -e 's/###KEY###/'$KEY'/g' /etc/riak-cs/app.config
-	perl -pi -e 's/###SECRET###/'$SECRET'/g' /etc/riak-cs/app.config
+        sed -i  "s/\"admin-key\"/\"$KEY\"/g" /etc/riak-cs/app.config
+        sed -i  "s/\"admin-secret\"/\"$SECRET\"/g" /etc/riak-cs/app.config
 
-	perl -pi -e 's/###KEY###/'$KEY'/g' /etc/riak-cs-control/app.config
-	perl -pi -e 's/###SECRET###/'$SECRET'/g' /etc/riak-cs-control/app.config
+        sed -i  "s/\"admin-key\"/\"$KEY\"/g" /etc/riak-cs-control/app.config
+        sed -i  "s/\"admin-secret\"/\"$SECRET\"/g" /etc/riak-cs-control/app.config
 
-	perl -pi -e 's/###KEY###/'$KEY'/g' /etc/stanchion/app.config
-	perl -pi -e 's/###SECRET###/'$SECRET'/g' /etc/stanchion/app.config
+        sed -i  "s/\"admin-key\"/\"$KEY\"/g" /etc/stanchion/app.config
+        sed -i  "s/\"admin-secret\"/\"$SECRET\"/g" /etc/stanchion/app.config
 
 	perl -pi -e 's/{anonymous_user_creation, true}/{anonymous_user_creation, false}/g' /etc/riak-cs/app.config
 fi
