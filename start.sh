@@ -23,17 +23,20 @@ if [ ! -d "/var/lib/riak/leveldb" ]; then
 #       perl -pi -e 's/###KEY###/'$KEY'/g' /etc/riak/app.config
 #       perl -pi -e 's/###SECRET###/'$SECRET'/g' /etc/riak/app.config
 
-        sed -i  "s/\"admin-key\"/\"$KEY\"/g" /etc/riak-cs/app.config
-        sed -i  "s/\"admin-secret\"/\"$SECRET\"/g" /etc/riak-cs/app.config
-
-        sed -i  "s/\"admin-key\"/\"$KEY\"/g" /etc/riak-cs-control/app.config
-        sed -i  "s/\"admin-secret\"/\"$SECRET\"/g" /etc/riak-cs-control/app.config
-
-        sed -i  "s/\"admin-key\"/\"$KEY\"/g" /etc/stanchion/app.config
-        sed -i  "s/\"admin-secret\"/\"$SECRET\"/g" /etc/stanchion/app.config
-
 	perl -pi -e 's/{anonymous_user_creation, true}/{anonymous_user_creation, false}/g' /etc/riak-cs/app.config
 fi
+
+KEY=`cat /var/lib/riak/admin_user.json | grep -E -o '"key_id":"[^\"]+"' | sed -e 's/\"//g' | cut -d : -f 2`
+SECRET=`cat /var/lib/riak/admin_user.json | grep -E -o '"key_secret":"[^\"]+"' | sed -e 's/\"//g' | cut -d : -f 2`
+
+sed -i  "/admin_key/c\{admin_key, \"$KEY\"}," /etc/riak-cs/app.config
+sed -i  "/admin_secret/c\{admin_secret, \"$SECRET\"}," /etc/riak-cs/app.config
+
+sed -i  "/admin_key/c\{cs_admin_key, \"$KEY\"}," /etc/riak-cs-control/app.config
+sed -i  "/admin_secret/c\{cs_admin_secret, \"$SECRET\"}," /etc/riak-cs-control/app.config
+
+sed -i  "/admin_key/c\{admin_key, \"$KEY\"}," /etc/stanchion/app.config
+sed -i  "/admin_secret/c\{admin_secret, \"$SECRET\"}" /etc/stanchion/app.config
 
 riak start
 sleep 2
@@ -41,8 +44,6 @@ stanchion start
 riak-cs start
 riak-cs-control start
 
-KEY=`cat /var/lib/riak/admin_user.json | grep -E -o '"key_id":"[^\"]+"' | sed -e 's/\"//g' | cut -d : -f 2`
-SECRET=`cat /var/lib/riak/admin_user.json | grep -E -o '"key_secret":"[^\"]+"' | sed -e 's/\"//g' | cut -d : -f 2`
 
 # start SSH
 /usr/sbin/sshd

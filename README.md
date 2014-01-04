@@ -38,7 +38,7 @@ docker build -t jmca/riakcs github.com/jmcarbo/docker-riakcs
 
 # Run with
 ```
-docker run -d -p 8080 -name="jmca" -v /tmp/riak:/var/lib/riak jmca/riakcs /bin/bash /start.sh
+docker run -d -p 8080 -name="jmca-riakcs" -v /tmp/riak:/var/lib/riak jmca/riakcs /bin/bash /start.sh
 ```
 
 # References

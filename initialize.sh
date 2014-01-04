@@ -19,14 +19,14 @@ riak-cs stop
 stanchion stop
 riak stop
 
-sed -i  "s/\"admin-key\"/\"$KEY\"/g" /etc/riak-cs/app.config
-sed -i  "s/\"admin-secret\"/\"$SECRET\"/g" /etc/riak-cs/app.config
+sed -i  "/admin_key/c\{admin_key, \"$KEY\"}," /etc/riak-cs/app.config
+sed -i  "/admin_secret/c\{admin_secret, \"$SECRET\"}," /etc/riak-cs/app.config
 
-sed -i  "s/\"admin-key\"/\"$KEY\"/g" /etc/riak-cs-control/app.config
-sed -i  "s/\"admin-secret\"/\"$SECRET\"/g" /etc/riak-cs-control/app.config
+sed -i  "/admin_key/c\{cs_admin_key, \"$KEY\"}," /etc/riak-cs-control/app.config
+sed -i  "/admin_secret/c\{cs_admin_secret, \"$SECRET\"}," /etc/riak-cs-control/app.config
 
-sed -i  "s/\"admin-key\"/\"$KEY\"/g" /etc/stanchion/app.config
-sed -i  "s/\"admin-secret\"/\"$SECRET\"/g" /etc/stanchion/app.config
+sed -i  "/admin_key/c\{admin_key, \"$KEY\"}," /etc/stanchion/app.config
+sed -i  "/admin_secret/c\{admin_secret, \"$SECRET\"}" /etc/stanchion/app.config
 
 perl -pi -e 's/{anonymous_user_creation, true}/{anonymous_user_creation, false}/g' /etc/riak-cs/app.config
 
